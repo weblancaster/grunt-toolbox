@@ -1,0 +1,19 @@
+/* line 1, ../scss/style.scss */
+body {
+  font: 62.5% helvetica, arial, 'sans-serif';
+}
+
+/* line 4, ../scss/style.scss */
+a {
+  color: #333;
+}
+
+/* line 7, ../scss/style.scss */
+a:hover {
+  color: #ccc;
+}
+
+/* line 10, ../scss/style.scss */
+p {
+  font-size: 12px;
+}
