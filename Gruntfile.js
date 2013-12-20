@@ -69,6 +69,7 @@ module.exports = function(grunt) {
         },
 
         // test with css lint task
+        // TODO: add .csslintrc file rules
         csslint: {
             options: {
                 csslintrc: '.csslintrc'
@@ -116,8 +117,7 @@ module.exports = function(grunt) {
             }
         },
 
-        // watch for changes on CSS and JS
-        // TODO: add watch for HTML
+        // watch for changes on HTML, CSS and JS
         watch: {
             src: {
                 files: [
@@ -127,9 +127,7 @@ module.exports = function(grunt) {
                     '!public/javascripts/*.min.js'
                 ],
                 tasks: ['dev']
-            },
-            livereload: true,
-            spawn: false
+            }
         }
 
     });

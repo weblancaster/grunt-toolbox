@@ -5,7 +5,6 @@
 	"forin":true,
 	"noarg":true,
 	"noempty":true,
-	"onew":true,
 	"undef":true, 
 	"unused":true, 
 	"strict":true, 
