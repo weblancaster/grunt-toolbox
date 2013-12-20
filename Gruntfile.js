@@ -1,23 +1,18 @@
 module.exports = function(grunt) {
     "use strict";
 
-    //pkg: grunt.file.readJSON('package.json');
-
-    // define all defaults
-    var port = 8000,
-        hostname = 'localhost';
+    pkg: grunt.file.readJSON('package.json'),
 
     grunt.initConfig({
 
-        // create a static web server
-        connect: {
-          server: {
-            options: {
-              hostname: hostname,
-              //base: publicDir,
-              port: port
-            }
-          }
+        tag: {
+            banner: 
+                "/*!\n" +
+                " * Grunt-toolbox\n" +
+                " * @author Michael Lancaster\n" +
+                " * @version 0.0.1\n" +
+                " * Copyright 2013.\n" +
+                " */\n"
         },
 
         // uglify js task
@@ -26,6 +21,9 @@ module.exports = function(grunt) {
                 files: {
                     'public/javascripts/app.min.js': ['public/javascripts/app.js']
                 }
+            },
+            options: {
+                banner: "<%= tag.banner %>"
             }
         },
 
@@ -61,9 +59,9 @@ module.exports = function(grunt) {
 
         // test with JS hint task
         jshint: {
-            all: [
-                'public/**/*.js', 
-                '!public/**/*.min.js'
+            files: [
+                'public/javascripts/*.js', 
+                '!public/javascripts/*.min.js'
             ],
             options: {
                 jshintrc: '.jshintrc'
@@ -121,22 +119,21 @@ module.exports = function(grunt) {
         // watch for changes on CSS and JS
         // TODO: add watch for HTML
         watch: {
-            files: [
-                'public/stylesheets/scss/style.scss',
-                'public/javascript/app.js',
-                '**/*.html'
-            ],
-            tasks: [
-                'connect',
-                'compass:dev',
-                'jshint',
-                'csslint'
-            ]
+            src: {
+                files: [
+                    '*.html', 
+                    'public/stylesheets/scss/*.scss', 
+                    'public/javascripts/*.js', 
+                    '!public/javascripts/*.min.js'
+                ],
+                tasks: ['dev']
+            },
+            livereload: true,
+            spawn: false
         }
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-compass');
@@ -159,7 +156,8 @@ module.exports = function(grunt) {
         'csslint'        
     ]);
 
-    grunt.event.on('watch', function(action, filepath) {
-        grunt.log.writeln(filepath + ' has ' + action);
+    grunt.event.on('watch', function(action, filepath, target) {
+      grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
     });
+
 };
