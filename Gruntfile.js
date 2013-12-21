@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'public/javascripts/app.min.js': ['public/javascripts/app.js']
+                    'dist/public/javascripts/app.min.js': ['public/javascripts/app.js']
                 }
             },
             options: {
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
             production: {
                 options: {
                   sassDir: 'public/stylesheets/scss',
-                  cssDir: 'public/stylesheets/css',
+                  cssDir: 'dist/public/stylesheets/css',
                   environment: 'production',
                   outputStyle: 'compressed',
                   force: true
@@ -69,7 +69,6 @@ module.exports = function(grunt) {
         },
 
         // test with css lint task
-        // TODO: add .csslintrc file rules
         csslint: {
             options: {
                 csslintrc: '.csslintrc'
@@ -94,7 +93,7 @@ module.exports = function(grunt) {
                         cwd: 'public/images/',
                         src: ['**/*.png'],
                         // Could also match cwd line above. i.e. project-directory/img/
-                        dest: 'public/images/',
+                        dest: 'dist/public/images/',
                         ext: '.png'
                     }
                 ]
@@ -110,10 +109,22 @@ module.exports = function(grunt) {
                         // cwd is 'current working directory'
                         cwd: 'public/images/',
                         src: ['**/*.jpg'],
-                        dest: 'public/images/',
+                        dest: 'dist/public/images/',
                         ext: '.jpg'
                     }
                 ]
+            }
+        },
+
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/index.html': 'index.html'
+                }
             }
         },
 
@@ -145,7 +156,8 @@ module.exports = function(grunt) {
         'uglify',
         'compass:production',
         'cssmin',
-        'imagemin'
+        'imagemin',
+        'htmlmin'
     ]);
 
     grunt.registerTask('dev', [

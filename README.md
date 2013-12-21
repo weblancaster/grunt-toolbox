@@ -3,6 +3,21 @@ Grunt toolbox
 
 A bunch of Grunt.js tasks to be used as default to your project.
 
+### Features
+
+- Watch for changes
+- JS uglify
+- CSS minify
+- SASS/COMPASS pre-processor
+- JS hint
+- CSS lint
+- Image minify
+
+### Future features
+
+- Deploy folder (under improvement)
+- Clean files
+
 ### Bonus
 
 - create a server for your project folder "python -m SimpleHTTPServer" access "http://localhost:8000/".
