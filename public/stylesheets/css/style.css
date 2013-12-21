@@ -18,8 +18,10 @@ p {
   font-size: 12px;
 }
 
-/* line 13, ../scss/style.scss */
+/* line 16, ../scss/style.scss */
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-weight: normal;
 }
