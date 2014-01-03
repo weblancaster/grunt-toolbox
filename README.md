@@ -1,7 +1,7 @@
 Grunt toolbox
 =============
 
-A bunch of Grunt.js tasks to be used as default to your project.
+Help stop repetitive boring tasks and aims productivity with default tasks
 
 ### Features
 
